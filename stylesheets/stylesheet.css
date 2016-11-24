@@ -1,245 +1,239 @@
-* {
-  box-sizing: border-box; }
+@import compass
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #606c71; }
+/* -------------------------------------
+ * For horizontal version, set the
+ * $vertical variable to false
+ * ------------------------------------- */
+$vertical: ture
 
-a {
-  color: #1e6bb8;
-  text-decoration: none; }
-  a:hover {
-    text-decoration: underline; }
+/* -------------------------------------
+ * General Style
+ * ------------------------------------- */
 
-.btn {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 0.3rem;
-  transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
-  .btn + .btn {
-    margin-left: 1rem; }
+// Colours
+$bg: #48b379
+$white: #eee9dc
+$red: #f98262
 
-.btn:hover {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3); }
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans)
 
-@media screen and (min-width: 64em) {
-  .btn {
-    padding: 0.75rem 1rem; } }
+body
+  @if $vertical
+    max-width: 1200px
+    margin: 0 auto
+  @else
+    margin: 0
+  padding: 0 5%
+  font-size: 100%
+  font-family: 'Noto Sans', sans-serif
+  color: $white
+  background: $bg
 
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .btn {
-    padding: 0.6rem 0.9rem;
-    font-size: 0.9rem; } }
+h2
+  margin: 3em 0 0 0
+  font-size: 1.5em
+  letter-spacing: 2px
+  text-transform: uppercase
 
-@media screen and (max-width: 42em) {
-  .btn {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.9rem; }
-    .btn + .btn {
-      margin-top: 1rem;
-      margin-left: 0; } }
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
 
-.page-header {
-  color: #fff;
-  text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+#timeline
+  list-style: none
+  @if $vertical
+    margin: 50px 0 30px 120px
+    padding-left: 30px
+    border-left: 8px solid $white
+  @else
+    margin: 120px 0 0
+    padding: 0
+    border-top: 8px solid $white
+    display: table
+    border-spacing: 30px 0
+  li
+    @if $vertical
+      margin: 40px 0
+      position: relative
+    @else
+      display: table-cell
+      // for Firefox
+      .relative
+        position: relative
+  p
+    margin: 0 0 15px
 
-@media screen and (min-width: 64em) {
-  .page-header {
-    padding: 5rem 6rem; } }
+.date
+  @if $vertical
+    margin-top: -10px
+    top: 50%
+    left: -158px
+  @else
+    text-align: center
+    top: -55px
+    left: 0
+    right: 0
+  font-size: 0.95em
+  line-height: 20px
+  position: absolute
+.circle
+  @if $vertical
+    margin-top: -10px
+    top: 50%
+    left: -44px
+  @else
+    margin: 0 auto
+    top: -14px
+    left: 0
+    right: 0
+  width: 10px
+  height: 10px
+  background: $bg
+  border: 5px solid $white
+  border-radius: 50%
+  display: block
+  position: absolute
 
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .page-header {
-    padding: 3rem 4rem; } }
+.content
+  @if $vertical
+    max-height: 20px
+    padding: 50px 20px 0
+    border-color: transparent
+  @else
+    width: 200px
+    max-height: 0
+    margin-top: 40px
+    vertical-align: top
+    padding: 50px 15px 15px
+    transition: width 0.4s linear, max-height 0.4s linear
+  border-width: 2px
+  border-style: solid
+  border-radius: 0.5em
+  position: relative
+  &:before, &:after
+    content: ""
+    width: 0
+    height: 0
+    border: solid transparent
+    position: absolute
+    pointer-events: none
+    @if $vertical
+      right: 100%
+    @else
+      bottom: 100%
+  &:before
+    @if $vertical
+      border-right-color: inherit
+      border-width: 20px
+      top: 50%
+      margin-top: -20px
+    @else
+      border-bottom-color: inherit
+      border-width: 15px
+      left: 50%
+      margin-left: -15px
+  &:after
+    @if $vertical
+      border-right-color: $bg
+      border-width: 17px
+      top: 50%
+      margin-top: -17px
+    @else
+      border-bottom-color: $bg
+      border-width: 12px
+      left: 50%
+      margin-left: -12px
+  p
+    max-height: 0
+    color: transparent
+    text-align: justify
+    word-break: break-word
+    hyphens: auto
+    overflow: hidden
 
-@media screen and (max-width: 42em) {
-  .page-header {
-    padding: 2rem 1rem; } }
+label
+  font-size: 1.3em
+  position: absolute
+  z-index: 100
+  cursor: pointer
+  @if $vertical
+    top: 20px
+    transition: transform 0.2s linear
+  @else
+    width: 200px
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+    display: block
+    top: 60px
+    left: 15px
 
-.project-name {
-  margin-top: 0;
-  margin-bottom: 0.1rem; }
+.radio
+  display: none
+.radio:checked
+  & + .relative
+    label
+      cursor: auto
+      @if $vertical
+        transform: translateX(42px)
+      @else
+        width: 400px
+        transition: width 0.3s linear 0.2s
+    .circle
+      background: $red
+  & ~ .content
+    max-height: 180px
+    border-color: $white
+    @if $vertical
+      margin-right: 20px
+      transform: translateX(20px)
+      transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear
+    @else
+      width: 400px
+    p
+      max-height: 200px
+      color: $white
+      transition: color 0.3s linear 0.3s
 
-@media screen and (min-width: 64em) {
-  .project-name {
-    font-size: 3.25rem; } }
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .project-name {
-    font-size: 2.25rem; } }
-
-@media screen and (max-width: 42em) {
-  .project-name {
-    font-size: 1.75rem; } }
-
-.project-tagline {
-  margin-bottom: 2rem;
-  font-weight: normal;
-  opacity: 0.7; }
-
-@media screen and (min-width: 64em) {
-  .project-tagline {
-    font-size: 1.25rem; } }
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .project-tagline {
-    font-size: 1.15rem; } }
-
-@media screen and (max-width: 42em) {
-  .project-tagline {
-    font-size: 1rem; } }
-
-.main-content :first-child {
-  margin-top: 0; }
-.main-content img {
-  max-width: 100%; }
-.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-weight: normal;
-  color: #159957; }
-.main-content p {
-  margin-bottom: 1em; }
-.main-content code {
-  padding: 2px 4px;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.9rem;
-  color: #383e41;
-  background-color: #f3f6fa;
-  border-radius: 0.3rem; }
-.main-content pre {
-  padding: 0.8rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #567482;
-  word-wrap: normal;
-  background-color: #f3f6fa;
-  border: solid 1px #dce6f0;
-  border-radius: 0.3rem; }
-  .main-content pre > code {
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
-    color: #567482;
-    word-break: normal;
-    white-space: pre;
-    background: transparent;
-    border: 0; }
-.main-content .highlight {
-  margin-bottom: 1rem; }
-  .main-content .highlight pre {
-    margin-bottom: 0;
-    word-break: normal; }
-.main-content .highlight pre, .main-content pre {
-  padding: 0.8rem;
-  overflow: auto;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  border-radius: 0.3rem; }
-.main-content pre code, .main-content pre tt {
-  display: inline;
-  max-width: initial;
-  padding: 0;
-  margin: 0;
-  overflow: initial;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0; }
-  .main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
-    content: normal; }
-.main-content ul, .main-content ol {
-  margin-top: 0; }
-.main-content blockquote {
-  padding: 0 1rem;
-  margin-left: 0;
-  color: #819198;
-  border-left: 0.3rem solid #dce6f0; }
-  .main-content blockquote > :first-child {
-    margin-top: 0; }
-  .main-content blockquote > :last-child {
-    margin-bottom: 0; }
-.main-content table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  word-break: normal;
-  word-break: keep-all; }
-  .main-content table th {
-    font-weight: bold; }
-  .main-content table th, .main-content table td {
-    padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
-.main-content dl {
-  padding: 0; }
-  .main-content dl dt {
-    padding: 0;
-    margin-top: 1rem;
-    font-size: 1rem;
-    font-weight: bold; }
-  .main-content dl dd {
-    padding: 0;
-    margin-bottom: 1rem; }
-.main-content hr {
-  height: 2px;
-  padding: 0;
-  margin: 1rem 0;
-  background-color: #eff0f1;
-  border: 0; }
-
-@media screen and (min-width: 64em) {
-  .main-content {
-    max-width: 64rem;
-    padding: 2rem 6rem;
-    margin: 0 auto;
-    font-size: 1.1rem; } }
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .main-content {
-    padding: 2rem 4rem;
-    font-size: 1.1rem; } }
-
-@media screen and (max-width: 42em) {
-  .main-content {
-    padding: 2rem 1rem;
-    font-size: 1rem; } }
-
-.site-footer {
-  padding-top: 2rem;
-  margin-top: 2rem;
-  border-top: solid 1px #eff0f1; }
-
-.site-footer-owner {
-  display: block;
-  font-weight: bold; }
-
-.site-footer-credits {
-  color: #819198; }
-
-@media screen and (min-width: 64em) {
-  .site-footer {
-    font-size: 1rem; } }
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .site-footer {
-    font-size: 1rem; } }
-
-@media screen and (max-width: 42em) {
-  .site-footer {
-    font-size: 0.9rem; } }
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+@if $vertical
+  @media screen and (max-width: 767px)
+    #timeline
+      margin-left: 0
+      padding-left: 0
+      border-left: none
+      li
+        margin: 50px 0
+    label
+      width: 85%
+      font-size: 1.1em
+      white-space: nowrap
+      text-overflow: ellipsis
+      overflow: hidden
+      display: block
+      transform: translateX(18px)
+    .content
+      padding-top: 45px
+      border-color: $white
+      &:before, &:after
+        border: solid transparent
+        bottom: 100%
+      &:before
+        border-bottom-color: inherit
+        border-width: 17px
+        top: -16px
+        left: 50px
+        margin-left: -17px
+      &:after
+        border-bottom-color: $bg
+        border-width: 20px
+        top: -20px
+        left: 50px
+        margin-left: -20px
+      p
+        font-size: 0.9em
+        line-height: 1.4
+    .circle, .date
+      display: none
